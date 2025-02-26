@@ -46,6 +46,12 @@
     </main>
 
     <script src="script.js"></script>
-
+<script>
+    if (window.Telegram && window.Telegram.WebApp) {
+        document.body.innerHTML += "<p>Открыто в Telegram WebApp ✅</p>";
+    } else {
+        document.body.innerHTML += "<p>Открыто в обычном браузере ❌</p>";
+    }
+</script>
 </body>
 </html>
