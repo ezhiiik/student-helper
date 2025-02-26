@@ -1,3 +1,9 @@
+let tg = window.Telegram.WebApp;
+
+tg.expand(); // Разворачивает WebApp на весь экран
+
+console.log("WebApp initialized:", tg);
+
 // Данные о практикумах
 const practices = {
     videos: [
