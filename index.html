@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Помощник студента</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header>
+        <h1>Помощник студента</h1>
+    </header>
+
+    <main>
+        <section id="welcome">
+            <h2>Добро пожаловать!</h2>
+            <p>Здесь вы найдёте записи практикумов, рекомендации и расписание встреч.</p>
+            <button onclick="showSection('videos')">Записи практикумов</button>
+            <button onclick="showSection('tips')">Рекомендации и подсказки</button>
+            <button onclick="showSection('calendar')">Календарь встреч</button>
+        </section>
+
+        <section id="practices" style="display:none;">
+            <h2 id="practice-title"></h2>
+            <div id="practice-list"></div>
+            <button class="back-btn" onclick="goBack()">Назад</button>
+        </section>
+
+        <section id="practice-details" style="display:none;">
+            <div class="card">
+                <h2 id="selected-practice-title"></h2>
+                <p id="selected-practice-content"></p>
+                <div class="buttons">
+                    <button class="back-btn" onclick="goBackToList()">Назад</button>
+                    <button class="next-btn">Вперёд</button>
+                </div>
+            </div>
+        </section>
+
+        <section id="calendar" style="display:none;">
+            <h2>Календарь встреч</h2>
+            <div id="calendar-list"></div>
+            <button class="back-btn" onclick="goBack()">Назад</button>
+        </section>
+    </main>
+
+    <script src="script.js"></script>
+
+</body>
+</html>
