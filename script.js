@@ -76,11 +76,16 @@ function loadTips(tips) {
 }
 
 // Загружаем календарь встреч
-function loadCalendar(meetings) {
+function loadCalendar(events) {
     let listContainer = document.getElementById("calendar-list");
-    listContainer.innerHTML = "";
+    if (!listContainer) {
+        console.error("Элемент calendar-list не найден!");
+        return;
+    }
 
-    meetings.forEach(event => {
+    listContainer.innerHTML = ""; // Очищаем календарь перед загрузкой
+
+    events.forEach(event => {
         let div = document.createElement("div");
         div.classList.add("card");
         div.innerHTML = `
@@ -92,7 +97,10 @@ function loadCalendar(meetings) {
         div.style.backgroundColor = event.type === "coworking" ? "#e6f5d0" : "#f0e6d2";
         listContainer.appendChild(div);
     });
+
+    console.log("Календарь загружен:", events);
 }
+
 
 // Загружаем данные при старте
 loadData();
