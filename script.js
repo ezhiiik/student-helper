@@ -1,20 +1,15 @@
 const dataURL = "https://raw.githubusercontent.com/ТВОЙ_GITHUB_USER/student-helper/main/data.json";
 
-// Загружаем данные из JSON
 async function loadData() {
     try {
         const response = await fetch(dataURL);
         const data = await response.json();
-
-        // Загружаем календарь встреч
         loadCalendar(data.calendar);
-
     } catch (error) {
         console.error("Ошибка загрузки данных:", error);
     }
 }
 
-// Загружаем календарь встреч
 function loadCalendar(events) {
     let listContainer = document.getElementById("calendar-list");
     listContainer.innerHTML = "";
@@ -33,5 +28,8 @@ function loadCalendar(events) {
     });
 }
 
-// Вызываем загрузку данных при старте
+function goBack() {
+    window.history.back();
+}
+
 loadData();
