@@ -15,17 +15,21 @@
 
     <main>
         <section id="welcome">
-            <h2>Добро пожаловать!</h2>
-            <p>Здесь вы найдёте записи практикумов, рекомендации и расписание встреч.</p>
-            <button onclick="showSection('videos', 'welcome')">Записи практикумов</button>
-            <button onclick="showSection('tips', 'welcome')">Рекомендации и подсказки</button>
-            <button onclick="showSection('calendar', 'welcome')">Календарь встреч</button>
+            <div class="card">
+                <h2>Добро пожаловать!</h2>
+                <p>Здесь вы найдёте записи практикумов, рекомендации и расписание встреч.</p>
+                <button onclick="showSection('videos', 'welcome')">Записи практикумов</button>
+                <button onclick="showSection('tips', 'welcome')">Рекомендации и подсказки</button>
+                <button onclick="showSection('calendar', 'welcome')">Календарь встреч</button>
+            </div>
         </section>
 
         <section id="practices" style="display:none;">
-            <h2 id="practice-title"></h2>
-            <div id="practice-list"></div>
-            <button class="back-btn" onclick="goBack()">Назад</button>
+            <div class="card">
+                <h2 id="practice-title"></h2>
+                <div id="practice-list"></div>
+                <button class="back-btn" onclick="goBack()">Назад</button>
+            </div>
         </section>
 
         <section id="practice-details" style="display:none;">
@@ -34,14 +38,17 @@
                 <p id="selected-practice-content"></p>
                 <div class="buttons">
                     <button class="back-btn" onclick="goBack()">Назад</button>
+                    <button class="next-btn">Вперёд</button>
                 </div>
             </div>
         </section>
 
         <section id="calendar" style="display:none;">
-            <h2>Календарь встреч</h2>
-            <div id="calendar-list"></div>
-            <button class="back-btn" onclick="goBack()">Назад</button>
+            <div class="card">
+                <h2>Календарь встреч</h2>
+                <div id="calendar-list"></div>
+                <button class="back-btn" onclick="goBack()">Назад</button>
+            </div>
         </section>
     </main>
 
