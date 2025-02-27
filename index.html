@@ -14,6 +14,7 @@
     </header>
 
     <main>
+        <!-- Стартовое окно -->
         <section id="welcome">
             <div class="card">
                 <h2>Добро пожаловать!</h2>
@@ -24,6 +25,7 @@
             </div>
         </section>
 
+        <!-- Список практикумов -->
         <section id="practices" style="display:none;">
             <div class="card">
                 <h2 id="practice-title"></h2>
@@ -32,6 +34,7 @@
             </div>
         </section>
 
+        <!-- Детали практикума -->
         <section id="practice-details" style="display:none;">
             <div class="card">
                 <h2 id="selected-practice-title"></h2>
@@ -43,6 +46,7 @@
             </div>
         </section>
 
+        <!-- Календарь встреч -->
         <section id="calendar" style="display:none;">
             <div class="card">
                 <h2>Календарь встреч</h2>
@@ -50,6 +54,16 @@
                 <button class="back-btn" onclick="goBack()">Назад</button>
             </div>
         </section>
+
+        <!-- Проверка Web App -->
+        <section id="webapp-check">
+            <div class="card">
+                <h2>Проверка Web App</h2>
+                <p id="webapp-status">Загрузка...</p>
+                <button class="back-btn" onclick="goBack()">Назад</button>
+            </div>
+        </section>
+
     </main>
 
     <script src="script.js"></script>
