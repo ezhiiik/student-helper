@@ -1,3 +1,13 @@
+// Проверяем, что Web App открыт в Telegram
+if (window.Telegram && window.Telegram.WebApp) {
+    let tg = window.Telegram.WebApp;
+    tg.expand(); // Разворачивает Web App на весь экран
+    console.log("WebApp работает в Telegram");
+} else {
+    console.warn("WebApp открыт в браузере, а не в Telegram");
+}
+
+
 const dataURL = "https://raw.githubusercontent.com/ezhiiik/student-helper/main/data.json";
 
 // Стек истории для кнопки "Назад"
