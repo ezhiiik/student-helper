@@ -1,4 +1,6 @@
-// Проверяем, что Web App открыт в Telegram
+const dataURL = "https://raw.githubusercontent.com/ezhiiik/student-helper/main/data.json";
+
+// Проверяем, открыт ли Web App в Telegram
 if (window.Telegram && window.Telegram.WebApp) {
     let tg = window.Telegram.WebApp;
     tg.expand(); // Разворачивает Web App на весь экран
@@ -6,9 +8,6 @@ if (window.Telegram && window.Telegram.WebApp) {
 } else {
     console.warn("WebApp открыт в браузере, а не в Telegram");
 }
-
-
-const dataURL = "https://raw.githubusercontent.com/ezhiiik/student-helper/main/data.json";
 
 // Стек истории для кнопки "Назад"
 let historyStack = ["welcome"];
@@ -39,7 +38,10 @@ function goBack() {
 async function loadData() {
     try {
         const response = await fetch(dataURL);
+        if (!response.ok) throw new Error("Ошибка загрузки JSON");
         const data = await response.json();
+
+        console.log("Данные загружены:", data);
 
         loadPractices(data.practices);
         loadTips(data.tips);
@@ -52,6 +54,11 @@ async function loadData() {
 // Загружаем список практикумов
 function loadPractices(practices) {
     let listContainer = document.getElementById("practice-list");
+    if (!listContainer) {
+        console.error("Элемент practice-list не найден!");
+        return;
+    }
+
     listContainer.innerHTML = "";
 
     practices.forEach(practice => {
@@ -60,11 +67,18 @@ function loadPractices(practices) {
         btn.onclick = () => alert(`Видео: ${practice.video}\nСоветы: ${practice.tips}`);
         listContainer.appendChild(btn);
     });
+
+    console.log("Практикумы загружены:", practices);
 }
 
 // Загружаем рекомендации
 function loadTips(tips) {
     let listContainer = document.getElementById("tips-list");
+    if (!listContainer) {
+        console.error("Элемент tips-list не найден!");
+        return;
+    }
+
     listContainer.innerHTML = "";
 
     tips.forEach(tip => {
@@ -73,6 +87,8 @@ function loadTips(tips) {
         div.innerHTML = `<h3>${tip.title}</h3><p>${tip.content}</p>`;
         listContainer.appendChild(div);
     });
+
+    console.log("Рекомендации загружены:", tips);
 }
 
 // Загружаем календарь встреч
@@ -83,7 +99,7 @@ function loadCalendar(events) {
         return;
     }
 
-    listContainer.innerHTML = ""; // Очищаем календарь перед загрузкой
+    listContainer.innerHTML = "";
 
     events.forEach(event => {
         let div = document.createElement("div");
@@ -100,7 +116,6 @@ function loadCalendar(events) {
 
     console.log("Календарь загружен:", events);
 }
-
 
 // Загружаем данные при старте
 loadData();
