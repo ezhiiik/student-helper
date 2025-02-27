@@ -18,34 +18,32 @@
         <section id="welcome">
             <div class="card">
                 <h2>Добро пожаловать!</h2>
-                <p>Здесь вы найдёте записи практикумов, рекомендации и расписание встреч.</p>
-                <button onclick="showSection('videos', 'welcome')">Записи практикумов</button>
+                <p>Выберите нужный раздел:</p>
+                <button onclick="showSection('practices', 'welcome')">Записи практикумов</button>
                 <button onclick="showSection('tips', 'welcome')">Рекомендации и подсказки</button>
                 <button onclick="showSection('calendar', 'welcome')">Календарь встреч</button>
             </div>
         </section>
 
-        <!-- Список практикумов -->
+        <!-- Вкладка "Записи практикумов" -->
         <section id="practices" style="display:none;">
             <div class="card">
-                <h2 id="practice-title"></h2>
+                <h2>Записи практикумов</h2>
                 <div id="practice-list"></div>
                 <button class="back-btn" onclick="goBack()">Назад</button>
             </div>
         </section>
 
-        <!-- Детали практикума -->
-        <section id="practice-details" style="display:none;">
+        <!-- Вкладка "Рекомендации и подсказки" -->
+        <section id="tips" style="display:none;">
             <div class="card">
-                <h2 id="selected-practice-title"></h2>
-                <p id="selected-practice-content"></p>
-                <div class="buttons">
-                    <button class="back-btn" onclick="goBack()">Назад</button>
-                </div>
+                <h2>Рекомендации</h2>
+                <div id="tips-list"></div>
+                <button class="back-btn" onclick="goBack()">Назад</button>
             </div>
         </section>
 
-        <!-- Календарь встреч -->
+        <!-- Вкладка "Календарь встреч" -->
         <section id="calendar" style="display:none;">
             <div class="card">
                 <h2>Календарь встреч</h2>
