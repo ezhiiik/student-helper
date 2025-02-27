@@ -1,71 +1,53 @@
-let historyStack = ["welcome"]; // Стек истории переходов
+const dataURL = "https://raw.githubusercontent.com/ТВОЙ_GITHUB_USER/student-helper/main/data.json";
 
-// Функция показа нужного раздела
-function showSection(sectionId, fromPage) {
-    document.querySelectorAll("section").forEach(section => {
-        section.style.display = "none";
-    });
+// Загружаем данные из JSON
+async function loadData() {
+    try {
+        const response = await fetch(dataURL);
+        const data = await response.json();
 
-    document.getElementById(sectionId).style.display = "block";
+        // Загружаем практикумы
+        loadPractices(data.practices);
 
-    if (fromPage) {
-        historyStack.push(fromPage);
+        // Загружаем рекомендации
+        loadTips(data.tips);
+
+        // Загружаем календарь встреч
+        loadCalendar(data.calendar);
+
+    } catch (error) {
+        console.error("Ошибка загрузки данных:", error);
     }
 }
 
-// Кнопка "Назад"
-function goBack() {
-    if (historyStack.length > 1) {
-        historyStack.pop();
-        let previousPage = historyStack[historyStack.length - 1];
-        showSection(previousPage);
-    }
-}
-
-// Данные о практикумах
-const practices = {
-    videos: [
-        { title: "Практикум 1", content: "Запись: https://video1.com" },
-        { title: "Практикум 2", content: "Запись: https://video2.com" }
-    ],
-    tips: [
-        { title: "Практикум 1", content: "Советы: Подготовьте материалы." },
-        { title: "Практикум 2", content: "Советы: Используйте справочники." }
-    ]
-};
-
-// Данные о встречах
-const meetings = [
-    { title: "Встреча с Павлом", date: "11 февраля 11:00-13:00", type: "meeting" },
-    { title: "Коворкинг с кураторами", date: "27 февраля 18:30", type: "coworking" }
-];
-
-// Показываем список практикумов
-function loadPractices(type) {
-    showSection("practices", "welcome");
-    document.getElementById("practice-title").textContent = type === "videos" ? "Записи практикумов" : "Рекомендации";
-
+// Загружаем список практикумов
+function loadPractices(practices) {
     let listContainer = document.getElementById("practice-list");
     listContainer.innerHTML = "";
 
-    practices[type].forEach(practice => {
+    practices.forEach(practice => {
         let btn = document.createElement("button");
         btn.textContent = practice.title;
-        btn.onclick = () => showPracticeDetails(practice.title, practice.content);
+        btn.onclick = () => alert(`Видео: ${practice.video}\nСоветы: ${practice.tips}`);
         listContainer.appendChild(btn);
     });
 }
 
-// Показываем детали практикума
-function showPracticeDetails(title, content) {
-    showSection("practice-details", "practices");
-    document.getElementById("selected-practice-title").textContent = title;
-    document.getElementById("selected-practice-content").innerHTML = `<p>${content}</p>`;
+// Загружаем рекомендации
+function loadTips(tips) {
+    let listContainer = document.getElementById("tips-list");
+    listContainer.innerHTML = "";
+
+    tips.forEach(tip => {
+        let div = document.createElement("div");
+        div.classList.add("card");
+        div.innerHTML = `<h3>${tip.title}</h3><p>${tip.content}</p>`;
+        listContainer.appendChild(div);
+    });
 }
 
 // Загружаем календарь встреч
-function loadCalendar() {
-    showSection("calendar", "welcome");
+function loadCalendar(meetings) {
     let listContainer = document.getElementById("calendar-list");
     listContainer.innerHTML = "";
 
@@ -77,3 +59,6 @@ function loadCalendar() {
         listContainer.appendChild(div);
     });
 }
+
+// Вызываем загрузку данных при старте
+loadData();
