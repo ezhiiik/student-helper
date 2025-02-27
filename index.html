@@ -6,6 +6,7 @@
     <title>Помощник студента</title>
     <link rel="stylesheet" href="style.css">
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/5.11.3/main.min.css">
 </head>
 <body>
 
@@ -14,46 +15,16 @@
     </header>
 
     <main>
-        <!-- Главный экран -->
-        <section id="welcome">
-            <div class="card">
-                <h2>Добро пожаловать!</h2>
-                <p>Выберите нужный раздел:</p>
-                <button onclick="showSection('practices', 'welcome')">Записи практикумов</button>
-                <button onclick="showSection('tips', 'welcome')">Рекомендации и подсказки</button>
-                <button onclick="showSection('calendar', 'welcome')">Календарь встреч</button>
-            </div>
-        </section>
-
-        <!-- Вкладка "Записи практикумов" -->
-        <section id="practices" style="display:none;">
-            <div class="card">
-                <h2>Записи практикумов</h2>
-                <div id="practice-list"></div>
-                <button class="back-btn" onclick="goBack()">Назад</button>
-            </div>
-        </section>
-
-        <!-- Вкладка "Рекомендации и подсказки" -->
-        <section id="tips" style="display:none;">
-            <div class="card">
-                <h2>Рекомендации</h2>
-                <div id="tips-list"></div>
-                <button class="back-btn" onclick="goBack()">Назад</button>
-            </div>
-        </section>
-
-        <!-- Вкладка "Календарь встреч" -->
-        <section id="calendar" style="display:none;">
+        <section id="calendar">
             <div class="card">
                 <h2>Календарь встреч</h2>
                 <div id="calendar-list"></div>
                 <button class="back-btn" onclick="goBack()">Назад</button>
             </div>
         </section>
-
     </main>
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/5.11.3/main.min.js"></script>
     <script src="script.js"></script>
 
 </body>
