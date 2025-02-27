@@ -1,4 +1,4 @@
-const dataURL = "https://raw.githubusercontent.com/ТВОЙ_GITHUB_USER/student-helper/main/data.json";
+const dataURL = "https://raw.githubusercontent.com/ezhiiik/student-helper/main/data.json";
 
 async function loadData() {
     try {
