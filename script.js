@@ -1,4 +1,4 @@
-let lastPage = "welcome"; // Хранит последнюю открытую страницу
+let lastPage = "welcome"; // Хранит предыдущую страницу
 
 // Показывает нужный раздел
 function showSection(sectionId, fromPage) {
@@ -34,7 +34,7 @@ const meetings = [
 function loadPractices(type) {
     showSection("practices", "welcome");
     document.getElementById("practice-title").textContent = type === "videos" ? "Записи практикумов" : "Рекомендации";
-    
+
     let listContainer = document.getElementById("practice-list");
     listContainer.innerHTML = "";
 
@@ -50,9 +50,7 @@ function loadPractices(type) {
 function showPracticeDetails(title, content) {
     showSection("practice-details", "practices");
     document.getElementById("selected-practice-title").textContent = title;
-    document.getElementById("selected-practice-content").innerHTML = `
-        <p>${content}</p>
-    `;
+    document.getElementById("selected-practice-content").innerHTML = `<p>${content}</p>`;
 }
 
 // Загрузить календарь встреч
