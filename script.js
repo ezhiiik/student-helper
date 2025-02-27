@@ -49,4 +49,31 @@ function loadPractices(type) {
     listContainer.innerHTML = "";
 
     practices[type].forEach(practice => {
-        let btn = document.createElement("button
+        let btn = document.createElement("button");
+        btn.textContent = practice.title;
+        btn.onclick = () => showPracticeDetails(practice.title, practice.content);
+        listContainer.appendChild(btn);
+    });
+}
+
+// Показываем детали практикума
+function showPracticeDetails(title, content) {
+    showSection("practice-details", "practices");
+    document.getElementById("selected-practice-title").textContent = title;
+    document.getElementById("selected-practice-content").innerHTML = `<p>${content}</p>`;
+}
+
+// Загружаем календарь встреч
+function loadCalendar() {
+    showSection("calendar", "welcome");
+    let listContainer = document.getElementById("calendar-list");
+    listContainer.innerHTML = "";
+
+    meetings.forEach(event => {
+        let div = document.createElement("div");
+        div.classList.add("card");
+        div.innerHTML = `<h3>${event.title}</h3><p>${event.date}</p>`;
+        div.style.backgroundColor = event.type === "coworking" ? "#e6f5d0" : "#f0e6d2";
+        listContainer.appendChild(div);
+    });
+}
