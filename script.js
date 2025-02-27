@@ -1,10 +1,18 @@
-let tg = window.Telegram.WebApp;
+let lastPage = "welcome"; // Хранит последнюю открытую страницу
 
-tg.expand(); // Разворачивает WebApp на весь экран
+// Показывает нужный раздел
+function showSection(sectionId, fromPage) {
+    document.querySelectorAll("section").forEach(section => {
+        section.style.display = "none";
+    });
+    document.getElementById(sectionId).style.display = "block";
 
-console.log("WebApp initialized:", tg);
+    if (fromPage) {
+        lastPage = fromPage;
+    }
+}
 
-// Данные о практикумах
+// Загружаем практикумы
 const practices = {
     videos: [
         { title: "Практикум 1", content: "Запись: https://video1.com" },
@@ -16,33 +24,19 @@ const practices = {
     ]
 };
 
-// Данные о встречах
+// Загружаем календарь встреч
 const meetings = [
     { title: "Встреча с Павлом", date: "11 февраля 11:00-13:00", type: "meeting" },
-    { title: "Коворкинг с кураторами", date: "27 февраля 18:30", type: "coworking" },
-    { title: "Встреча с Павлом", date: "4 марта 13:00-15:30", type: "meeting" },
-    { title: "Коворкинг с кураторами", date: "6 марта 18:30", type: "coworking" }
+    { title: "Коворкинг с кураторами", date: "27 февраля 18:30", type: "coworking" }
 ];
 
-// Показать раздел
-function showSection(sectionId) {
-    document.querySelectorAll("section").forEach(section => {
-        section.style.display = "none";
-    });
-    document.getElementById(sectionId).style.display = "block";
-
-    if (sectionId === "videos" || sectionId === "tips") {
-        loadPractices(sectionId);
-    } else if (sectionId === "calendar") {
-        loadCalendar();
-    }
-}
-
-// Загрузить практикумы
+// Показать список практикумов
 function loadPractices(type) {
+    showSection("practices", "welcome");
+    document.getElementById("practice-title").textContent = type === "videos" ? "Записи практикумов" : "Рекомендации";
+    
     let listContainer = document.getElementById("practice-list");
     listContainer.innerHTML = "";
-    document.getElementById("practice-title").textContent = type === "videos" ? "Записи практикумов" : "Рекомендации";
 
     practices[type].forEach(practice => {
         let btn = document.createElement("button");
@@ -54,40 +48,29 @@ function loadPractices(type) {
 
 // Показать детали практикума
 function showPracticeDetails(title, content) {
-    document.getElementById("practices").style.display = "none";
-    document.getElementById("practice-details").style.display = "block";
+    showSection("practice-details", "practices");
     document.getElementById("selected-practice-title").textContent = title;
-    document.getElementById("selected-practice-content").textContent = content;
+    document.getElementById("selected-practice-content").innerHTML = `
+        <p>${content}</p>
+    `;
 }
 
 // Загрузить календарь встреч
 function loadCalendar() {
+    showSection("calendar", "welcome");
     let listContainer = document.getElementById("calendar-list");
     listContainer.innerHTML = "";
 
-    meetings.forEach(meeting => {
+    meetings.forEach(event => {
         let div = document.createElement("div");
         div.classList.add("card");
-        div.innerHTML = `<h3>${meeting.title}</h3><p>${meeting.date}</p>`;
-        if (meeting.type === "coworking") {
-            div.style.backgroundColor = "#e6f5d0"; // Зеленоватый фон для коворкинга
-        } else {
-            div.style.backgroundColor = "#f0e6d2"; // Бежевый фон для встреч
-        }
+        div.innerHTML = `<h3>${event.title}</h3><p>${event.date}</p>`;
+        div.style.backgroundColor = event.type === "coworking" ? "#e6f5d0" : "#f0e6d2";
         listContainer.appendChild(div);
     });
 }
 
 // Кнопка "Назад"
 function goBack() {
-    document.querySelectorAll("section").forEach(section => {
-        section.style.display = "none";
-    });
-    document.getElementById("welcome").style.display = "block";
-}
-
-// Кнопка "Назад" к списку практикумов
-function goBackToList() {
-    document.getElementById("practice-details").style.display = "none";
-    document.getElementById("practices").style.display = "block";
+    showSection(lastPage);
 }
