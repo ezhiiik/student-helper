@@ -43,9 +43,25 @@ async function loadData() {
 
         console.log("Данные загружены:", data);
 
-        loadPractices(data.practices);
-        loadTips(data.tips);
-        loadCalendar(data.calendar);
+        if (data.calendar && data.calendar.length > 0) {
+            console.log("Календарь найден, загружаем...");
+            loadCalendar(data.calendar);
+        } else {
+            console.warn("Календарь пуст или не найден!");
+        }
+
+        if (data.practices && data.practices.length > 0) {
+            loadPractices(data.practices);
+        } else {
+            console.warn("Записи практикумов не найдены.");
+        }
+
+        if (data.tips && data.tips.length > 0) {
+            loadTips(data.tips);
+        } else {
+            console.warn("Рекомендации не найдены.");
+        }
+
     } catch (error) {
         console.error("Ошибка загрузки данных:", error);
     }
@@ -100,6 +116,11 @@ function loadCalendar(events) {
     }
 
     listContainer.innerHTML = "";
+
+    if (!events || events.length === 0) {
+        listContainer.innerHTML = "<p>Нет запланированных встреч.</p>";
+        return;
+    }
 
     events.forEach(event => {
         let div = document.createElement("div");
