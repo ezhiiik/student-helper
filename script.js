@@ -1,4 +1,4 @@
-let lastPage = "welcome"; // Хранит предыдущую страницу
+let lastPage = "welcome"; // Запоминаем предыдущую страницу
 
 // Показывает нужный раздел
 function showSection(sectionId, fromPage) {
@@ -12,7 +12,12 @@ function showSection(sectionId, fromPage) {
     }
 }
 
-// Загружаем практикумы
+// Кнопка "Назад"
+function goBack() {
+    showSection(lastPage);
+}
+
+// Загружаем данные для практикумов
 const practices = {
     videos: [
         { title: "Практикум 1", content: "Запись: https://video1.com" },
@@ -30,7 +35,7 @@ const meetings = [
     { title: "Коворкинг с кураторами", date: "27 февраля 18:30", type: "coworking" }
 ];
 
-// Показать список практикумов
+// Показываем список практикумов
 function loadPractices(type) {
     showSection("practices", "welcome");
     document.getElementById("practice-title").textContent = type === "videos" ? "Записи практикумов" : "Рекомендации";
@@ -46,14 +51,14 @@ function loadPractices(type) {
     });
 }
 
-// Показать детали практикума
+// Показываем детали практикума
 function showPracticeDetails(title, content) {
     showSection("practice-details", "practices");
     document.getElementById("selected-practice-title").textContent = title;
     document.getElementById("selected-practice-content").innerHTML = `<p>${content}</p>`;
 }
 
-// Загрузить календарь встреч
+// Загружаем календарь встреч
 function loadCalendar() {
     showSection("calendar", "welcome");
     let listContainer = document.getElementById("calendar-list");
@@ -68,7 +73,14 @@ function loadCalendar() {
     });
 }
 
-// Кнопка "Назад"
-function goBack() {
-    showSection(lastPage);
+// Проверка Web App
+function checkWebApp() {
+    let statusElement = document.getElementById("webapp-status");
+    if (window.Telegram && window.Telegram.WebApp) {
+        statusElement.innerHTML = "Открыто в Telegram ✅";
+    } else {
+        statusElement.innerHTML = "Открыто в обычном браузере ❌";
+    }
 }
+
+checkWebApp();
