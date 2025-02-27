@@ -2,12 +2,13 @@ body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #f8f5d7;
+    background-color: #F8F1E5; /* Бежевый фон */
     text-align: center;
+    color: #5A4636; /* Тёмно-коричневый текст */
 }
 
 header {
-    background-color: #8c5c3b;
+    background-color: #8C5C3B; /* Темно-бежевый заголовок */
     color: white;
     padding: 15px;
     text-align: center;
@@ -17,26 +18,29 @@ main {
     padding: 20px;
     max-width: 600px;
     margin: auto;
+    background: white;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
 }
 
 h2 {
-    color: #8c5c3b;
+    color: #8C5C3B;
 }
 
 button {
-    background-color: #8c5c3b;
+    background-color: #8C5C3B; /* Темно-бежевый */
     color: white;
-    padding: 10px;
+    padding: 12px;
     margin: 10px;
     border: none;
     cursor: pointer;
     font-size: 16px;
     border-radius: 5px;
-    width: 100%;
+    width: 90%;
 }
 
 button:hover {
-    background-color: #6b442a;
+    background-color: #6B442A; /* Чуть темнее при наведении */
 }
 
 .card {
@@ -48,9 +52,5 @@ button:hover {
 }
 
 .back-btn {
-    background-color: #a07e5a;
-}
-
-.next-btn {
-    background-color: #6b442a;
+    background-color: #A07E5A; /* Светлый беж */
 }
