@@ -43,20 +43,19 @@ async function loadData() {
 
         console.log("Данные загружены:", data);
 
-        if (data.calendar && data.calendar.length > 0) {
-            console.log("Календарь найден, загружаем...");
+        if (data.calendar && Array.isArray(data.calendar)) {
             loadCalendar(data.calendar);
         } else {
             console.warn("Календарь пуст или не найден!");
         }
 
-        if (data.practices && data.practices.length > 0) {
+        if (data.practices && Array.isArray(data.practices)) {
             loadPractices(data.practices);
         } else {
             console.warn("Записи практикумов не найдены.");
         }
 
-        if (data.tips && data.tips.length > 0) {
+        if (data.tips && Array.isArray(data.tips)) {
             loadTips(data.tips);
         } else {
             console.warn("Рекомендации не найдены.");
@@ -77,6 +76,11 @@ function loadPractices(practices) {
 
     listContainer.innerHTML = "";
 
+    if (!practices || practices.length === 0) {
+        listContainer.innerHTML = "<p>Нет записей практикумов.</p>";
+        return;
+    }
+
     practices.forEach(practice => {
         let btn = document.createElement("button");
         btn.textContent = practice.title;
@@ -96,6 +100,11 @@ function loadTips(tips) {
     }
 
     listContainer.innerHTML = "";
+
+    if (!tips || tips.length === 0) {
+        listContainer.innerHTML = "<p>Нет рекомендаций.</p>";
+        return;
+    }
 
     tips.forEach(tip => {
         let div = document.createElement("div");
