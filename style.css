@@ -59,12 +59,3 @@ button:hover {
 .back-btn:hover {
     background-color: #8A6A4F;
 }
-
-/* Кнопка "Вперёд" */
-.next-btn {
-    background-color: #6B442A;
-}
-
-.next-btn:hover {
-    background-color: #52341E;
-}
